@@ -6,8 +6,11 @@ import { FC, Fragment, ReactNode } from "react";
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
+import { FaUserAlt } from "react-icons/fa";
 import Button from "../UI/Button";
 import useAuthModal from "@/hooks/useAuthModal";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import useUser from "@/hooks/useUser";
 
 interface HeaderProps {
   children: ReactNode;
@@ -17,8 +20,15 @@ interface HeaderProps {
 const Header: FC<HeaderProps> = ({ children, className }) => {
   const router = useRouter();
   const { onOpen } = useAuthModal();
-  const handleLogout = () => {
-    // TODO: Handle The Logout Action
+  const supabaseClient = useSupabaseClient();
+  const { user, isLoading } = useUser();
+  const handleLogout = async () => {
+    const { error } = await supabaseClient.auth.signOut();
+    // TODO: Reset the playing songs
+    router.refresh();
+    if (error) {
+      console.error(error.message);
+    }
   };
   return (
     <div
@@ -51,21 +61,32 @@ const Header: FC<HeaderProps> = ({ children, className }) => {
           </button>
         </div>
         <div className="flex justify-between items-center gap-x-4">
-          <Fragment>
-            <div>
-              <Button
-                className="bg-transparent text-neutral-300 font-medium"
-                onClick={onOpen}
-              >
-                Sign Up
+          {user ? (
+            <div className="flex gap-x-4 items-center">
+              <Button className="bg-white px-6 py-2" onClick={handleLogout}>
+                Log Out
+              </Button>
+              <Button onClick={() => router.push("/account")} className="bg-white w-min">
+                <FaUserAlt />
               </Button>
             </div>
-            <div>
-              <Button className="bg-white px-6 py-2" onClick={onOpen}>
-                Log In
-              </Button>
-            </div>
-          </Fragment>
+          ) : (
+            <Fragment>
+              <div>
+                <Button
+                  className="bg-transparent text-neutral-300 font-medium"
+                  onClick={onOpen}
+                >
+                  Sign Up
+                </Button>
+              </div>
+              <div>
+                <Button className="bg-white px-6 py-2" onClick={onOpen}>
+                  Log In
+                </Button>
+              </div>
+            </Fragment>
+          )}
         </div>
       </div>
       {children}
