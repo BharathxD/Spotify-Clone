@@ -18,7 +18,10 @@ const ListItem: FC<ListItemProps> = ({ image, href, name }) => {
     router.push(href);
   };
   return (
-    <button className="relative group flex items-center rounded-md overflow-hidden gap-x-4 bg-neutral-100/10 hover:bg-neutral-100/20 transition pr-4">
+    <button
+      className="relative group flex items-center rounded-md overflow-hidden gap-x-4 bg-neutral-100/10 hover:bg-neutral-100/20 transition pr-4"
+      onClick={onClick}
+    >
       <div className="relative min-h-[76px] min-w-[72px]">
         <Image className="object-cover" src={image} alt={name} fill />
       </div>
