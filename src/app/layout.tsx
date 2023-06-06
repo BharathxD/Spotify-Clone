@@ -1,4 +1,4 @@
-import Navbar from "@/components/Nav/navBar";
+import Navbar from "@/components/Nav/Navbar";
 import "./globals.css";
 import { Figtree } from "next/font/google";
 
