@@ -1,5 +1,6 @@
 "use client";
 
+import AuthModal from "@/components/Modals/AuthModal";
 import Modal from "@/components/Modals/Modal";
 import { Fragment, useEffect, useState } from "react";
 
@@ -15,12 +16,7 @@ const ModalProvider = () => {
   }
   return (
     <Fragment>
-      <Modal
-        title="Test Modal"
-        onChange={() => {}}
-        description="This a test description"
-        isOpen={true}
-      >React Nodes</Modal>
+      <AuthModal />
     </Fragment>
   );
 };
