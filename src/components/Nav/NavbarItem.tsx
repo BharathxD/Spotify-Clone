@@ -24,7 +24,7 @@ const NavbarItem: FC<NavbarItemProps> = ({
         active && "text-white"
       )}
     >
-      <Icon size={16} />
+      <Icon size={30} />
       <p className="truncate w-full">{label}</p>
     </Link>
   );

@@ -21,20 +21,20 @@ const Header: FC<HeaderProps> = ({ children, className }) => {
   return (
     <div
       className={mergeClasses(
-        "h-fit bg-gradient-to-b from-emerald-800 p-6",
+        "h-fit bg-gradient-to-b from-emerald-800/50 px-6 py-5",
         className
       )}
     >
       <div className="w-full mb-4 flex items-center justify-between">
         <div className="hidden md:flex gap-x-2 items-center">
           <button
-            className="rounded-full bg-black flex items-center justify-center hover:opacity-75 transition"
+            className="rounded-full bg-black/75 flex items-center justify-center hover:opacity-75 transition"
             onClick={() => router.back()}
           >
             <RxCaretLeft className="text-white" size={35} />
           </button>
           <button
-            className="rounded-full bg-black flex items-center justify-center hover:opacity-75 transition"
+            className="rounded-full bg-black/75 flex items-center justify-center hover:opacity-75 transition"
             onClick={() => router.forward()}
           >
             <RxCaretRight className="text-white" size={35} />
