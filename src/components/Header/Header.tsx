@@ -2,10 +2,11 @@
 
 import mergeClasses from "@/utils/mergeClasses";
 import { useRouter } from "next/navigation";
-import { FC, ReactNode } from "react";
+import { FC, Fragment, ReactNode } from "react";
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
+import Button from "../UI/Button";
 
 interface HeaderProps {
   children: ReactNode;
@@ -46,6 +47,23 @@ const Header: FC<HeaderProps> = ({ children, className }) => {
           <button className="rounded-full p-2 bg-white flex items-center justify-center hover:opacity-75">
             <BiSearch className="text-black" size={20} />
           </button>
+        </div>
+        <div className="flex justify-between items-center gap-x-4">
+          <Fragment>
+            <div>
+              <Button
+                onClick={() => {}}
+                className="bg-transparent text-neutral-300 font-medium"
+              >
+                Sign Up
+              </Button>
+            </div>
+            <div>
+              <Button onClick={() => {}} className="bg-white px-6 py-2">
+                Log In
+              </Button>
+            </div>
+          </Fragment>
         </div>
       </div>
       {children}
