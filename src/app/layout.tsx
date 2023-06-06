@@ -1,6 +1,7 @@
 import Navbar from "@/components/Nav/Navbar";
 import "./globals.css";
 import { Figtree } from "next/font/google";
+import SupabaseProvider from "@/providers/SupabaseProvider";
 
 const figtreeFont = Figtree({ subsets: ["latin"] });
 
@@ -17,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={figtreeFont.className}>
-        <Navbar>{children}</Navbar>
+        <SupabaseProvider>
+          <Navbar>{children}</Navbar>
+        </SupabaseProvider>
       </body>
     </html>
   );
